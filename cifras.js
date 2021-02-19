@@ -1,4 +1,4 @@
-const {numOnedigit,repeatnum}= require('./calculatenumRomano');
+const {numOnedigit,repeatnum,validaterangonum}= require('./calculatenumRomano');
 
 const validatecifras=(num)=>{
 
@@ -13,7 +13,9 @@ const validatecifras=(num)=>{
 
         //Número con dos cifras
         case 2:
-            console.log("1");
+            console.log("2");
+            //1. Validar el rango en el que está el número 
+            validaterangonum(num);
             break;
         //Número con dos cifras
         case 3:
@@ -33,4 +35,4 @@ const validatecifras=(num)=>{
     }
 }
 
-validatecifras(9);
+validatecifras(42);
