@@ -1,33 +1,33 @@
 //Función que convierte un número entre 1 a 10 en Romano
 const numOnedigit = (num) => {
-    let numromano = "";
+    let numromano="";
     if (num > 0 && num < 4) {
         numromano = repeatnum(num, "I");
     }
     else if (num > 5 && num < 9) {
-        numromano = "V";
+        numromano="V";
         let restanum = num - 5;
         numromano += repeatnum(restanum, "I");
     }
     else {
         if (num == 4) {
-            numromano = "IV";
+            numromano="IV";
         }
         else if (num == 9) {
-            numromano = "IX";
+            numromano="IX";
         }
         else {
-            num == 5 ? numromano = "V" : numromano = "";
+            num == 5 ? numromano="V" : numromano = "";
         }
     }
-    return (numromano);
+    return(numromano);
 }
 
 //Función que repite un número: xxx , LL
 //numveces: Número de veces que se debe repetir
 //numromano: Número en Romano que se va a repetir
 const repeatnum = (numveces, numromano) => {
-    let numromanoend = " ";
+    let numromanoend="";
     for (let i = 0; i < numveces; i++) {
         numromanoend += numromano;
     }
@@ -36,7 +36,7 @@ const repeatnum = (numveces, numromano) => {
 
 //Validar número de dos digitos
 const validatenumtwodigits = (num, comparenumbase, numromanob) => {
-    let numromano = "";
+    let numromano="";
     //Validar el primer digito
     let firstdigit = num.toString()[0];
     //Último digito,Enviar a la función Onedigit par que devuelva el número en romano
@@ -56,15 +56,16 @@ const validatenumtwodigits = (num, comparenumbase, numromanob) => {
 
 const validateranknumtwodigits = (num) => {
     let secondDigit = numOnedigit(num.toString()[1]);
-    let numromano = "";
+    let numromano="";
     //Validar rando entre 10 a <40  que es x xx xxx
     if (num >= 10 && num < 40) {
         numromano=validatenumtwodigits(num, '10', 'X');
     }
     else if (num >= 50 && num < 90) {
+        numromano="L"
         //Si el primero digito es 5, no se debe repetir
         if (num.toString()[0] == 5) {
-            numromano += secondDigit;
+            numromano+=secondDigit;
         }
         //Si el segundo digito no es 5 , es numero mayor a 50, entonces se tiene que sumar al L
         else {
@@ -76,18 +77,18 @@ const validateranknumtwodigits = (num) => {
     else {
         //Números entre 40-50 y 90-100
         if (num.toString()[0] == 4) {
-            numromano = "XL"
+            numromano="XL"
             num == 40 ? numromano : numromano = numromano + secondDigit;
         }
         else if (num.toString()[0] == 9) {
-            numromano = "XC"
+            numromano="XC"
             num == 90 ? numromano : numromano + secondDigit;
         }
     }
     return (numromano);
 }
 
-const validatescounddigit = (num) => {
+const validatescounddigit=(num) => {
     if (num == 0 || num == 00 || num == 000) {
         return true;
     }
@@ -98,7 +99,7 @@ const validatescounddigit = (num) => {
 
 
 const validatenumthreedigitos = (num, comparenumbase, numromanob) => {
-    let numromano = "";
+    let numromano="";
     //Primer digito
     let firstcifrarepeat = num.toString()[0];
     let lasttwodigits = validateranknumtwodigits(num.toString().substr(1, 2));
@@ -133,13 +134,13 @@ const validatenumthreedigitos = (num, comparenumbase, numromanob) => {
 
 const validaterankthreedigits = (num) => {
 
-    let numromano = "";
+    let numromano="";
     //NO OLVIDAR RETORNAR
     if (num >= 100 && num < 400) {
         numromano=validatenumthreedigitos(num, '100', 'C');
     }
     else if (num >= 500 && num < 900) {
-        let thirddigit = "";
+        let thirddigit="";
 
         if (num.toString()[0] == 5) {
             //Validar que le número no se 0
@@ -151,16 +152,16 @@ const validaterankthreedigits = (num) => {
                 //Validar los dos últimos digitos
                 thirddigit = validateranknumtwodigits(num.toString().substr(1, 2));
             }
-            numromano = "D" + thirddigit;
+            numromano="D"+thirddigit;
         }
         else {
-            numromano = "D" + validatenumthreedigitos(num, '500', 'C')
+            numromano="D"+validatenumthreedigitos(num, '500', 'C')
         }
     }
     else {
         //Números entre 400-500 y 900-1000
         if (num >= 400 && num < 500) {
-            numromano = "CD";
+            numromano="CD";
 
             if (validatescounddigit(num.toString()[1])) {
                 //Si el segundo digito es cero
@@ -173,7 +174,7 @@ const validaterankthreedigits = (num) => {
             numromano += thirddigit;
         }
         else if (num >= 900 && num < 1000) {
-            numromano = "CM";
+            numromano="CM";
             if (validatescounddigit(num.toString()[1])) {
                 //Si el segundo digito es cero
                 thirddigit = numOnedigit(num.toString()[2]);
@@ -195,7 +196,7 @@ const validaterankthreedigits = (num) => {
 
 
 const validatenumfourdigitos = (num, comparenumbase, numromanob) => {
-    let numromano = "";
+    let numromano="";
     //Primer digito
     let firstcifrarepeat = num.toString()[0];
     
@@ -213,8 +214,7 @@ const validatenumfourdigitos = (num, comparenumbase, numromanob) => {
         else{
             numromano = repeatnum(firstcifrarepeat, numromanob);
         }
-
-        let thirddigitFourth = "";
+        let thirddigitFourth="";
         //Si el segundo digito es cero, valida la si el tercer digito  es cero
         if (validatescounddigit(num.toString()[2])) {
             //traer el ultimo digito
@@ -224,7 +224,6 @@ const validatenumfourdigitos = (num, comparenumbase, numromanob) => {
             //Trer los dos últimos números
             thirddigitFourth = validateranknumtwodigits(num.toString().substr(2, 3));
         }
-
         //ultimo digitos
         numromano+=thirddigitFourth;
     }
