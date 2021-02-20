@@ -235,28 +235,15 @@ const validatenumfourdigitos = (num, comparenumbase, numromanob) => {
         //traer los últimos 3 digitos digitos
         let thirddigit = validaterankthreedigits(num.toString().substr(1, 3))
         numromano+=thirddigit;
-        
-
-        //Si el segundo digito NO es cero, valida la cantidad de veces del primero y se envían los dos ultimos
-        /*console.log("num de dos ultimos digitos de un numero de 3 cifras", firstcifrarepeat);
-        if (firstcifrarepeat >= 5 && firstcifrarepeat < 9) {
-            firstcifrarepeat = firstcifrarepeat - 5;
-            console.log(firstcifrarepeat);
-        }
-        numromano = repeatnum(firstcifrarepeat, numromanob);
-        //dos ultimos digitos
-        numromano += lasttwodigits;*/
     }
     return (numromano);
 }
 
 const validaterankfourdigits = (num) => {
-
     let numromano="";
     //NO OLVIDAR RETORNAR
     if (num >= 1000 && num < 4000) {
         numromano=validatenumfourdigitos(num, '1000', 'M');
-
     }
     return numromano;
 }

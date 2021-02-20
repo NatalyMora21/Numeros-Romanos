@@ -6,14 +6,12 @@ const intToRoman=(num)=>{
     2. Validar cantidad de digitos que tiene el número
     */
     if (num>=1 && num<=3999 && Number.isInteger(num)){
-        validatecifras(num);
+        return validatecifras(num);
     }
     else{
-        console.log("Número inválido");
         return ('Número inválido');
         
     }
 }
 
-intToRoman(3999);
 
