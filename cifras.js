@@ -1,4 +1,4 @@
-const {numOnedigit,repeatnum,validaterangonum}= require('./calculatenumRomano');
+const {numOnedigit,validateranknumtwodigits,validaterankthreedigits,validaterankfourdigits}= require('./calculatenumRomano');
 
 const validatecifras=(num)=>{
 
@@ -15,24 +15,22 @@ const validatecifras=(num)=>{
         case 2:
             console.log("2");
             //1. Validar el rango en el que está el número 
-            validaterangonum(num);
+            console.log(validateranknumtwodigits(num));
             break;
         //Número con dos cifras
         case 3:
-            console.log("1");
+            console.log("3");
+            console.log(validaterankthreedigits(num));
             break;
 
         //Número con dos cifras
         case 4:
-            console.log("1");
+            console.log(validaterankfourdigits(num));
             break;
 
         default:
             console.log('Error, cantidad de digitos mayor');
-
-
-
     }
 }
 
-validatecifras(42);
+validatecifras(1100);
